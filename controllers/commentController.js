@@ -1,7 +1,7 @@
 const Comment = require('../models/Comment');
 const User = require('../models/User');
 const mongoose = require('mongoose');
-const errorHandler = require('./errorHandler').withScope('CommentController');
+const errorHandler = require('../utils/errorHandling').withScope('CommentController');
 
 /**
  * @swagger

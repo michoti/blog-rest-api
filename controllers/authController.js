@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
-const { addToBlacklist } = require('./authMiddleware');
-const errorHandler = require('./errorHandler').withScope('AuthController');
+const { addToBlacklist } = require('../middleware/authMiddleware');
+const errorHandler = require('../utils/errorHandling').withScope('AuthController');
 
 // Create a test account for nodemailer
 const createTestAccount = async () => {

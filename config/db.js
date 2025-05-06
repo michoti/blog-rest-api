@@ -1,17 +1,42 @@
 const mongoose = require('mongoose');
+const consola = require('consola');
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('MongoDB connected');
-  } catch (err) {
-    console.error(err.message);
-    console.log("Database not connected", err.message);
-    process.exit(1);
+class Database {
+  static #instance = null;
+
+  constructor() {
+    if (Database.#instance) {
+      return Database.#instance;
+    }
+    Database.#instance = this;
+    this.connection = null;
   }
-};
 
-module.exports = connectDB;
+  static getInstance() {
+    if (!Database.#instance) {
+      Database.#instance = new Database();
+    }
+    return Database.#instance;
+  }
+
+  async connect() {
+    if (this.connection) {
+      consola.info('Using existing MongoDB connection');
+      return this.connection;
+    }
+
+    try {
+      this.connection = await mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      consola.success('MongoDB connected');
+      return this.connection;
+    } catch (err) {
+      consola.error('Database connection error:', err.message);
+      process.exit(1);
+    }
+  }
+}
+
+module.exports = Database.getInstance();

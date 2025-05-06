@@ -1,7 +1,7 @@
 const Post = require('../models/Post');
 const User = require('../models/User');
 const mongoose = require('mongoose');
-const errorHandler = require('./errorHandler').withScope('PostController');
+const errorHandler = require('../utils/errorHandling').withScope('PostController');
 
 /**
  * @swagger

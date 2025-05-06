@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Blog API',
+      title: 'Blog REST API',
       version: '1.0.0',
-      description: 'API for a blog platform with authentication, posts, comments, and categories',
+      description: 'REST API for a blog platform with authentication, posts, comments, and categories',
     },
     servers: [
       {

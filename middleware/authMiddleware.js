@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const BlacklistedToken = require('../models/BlacklistedToken');
 const User = require('../models/User');
-const errorHandler = require('./errorHandler').withScope('AuthMiddleware');
+const errorHandler = require('../utils/errorHandling').withScope('AuthMiddleware');
 
 const protect = async (req, res, next) => {
   let token;

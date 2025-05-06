@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const db = require('./config/db');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
@@ -35,7 +35,7 @@ app.use((err, req, res, next) => {
   errorHandler.handleError(err, res);
 });
 
-connectDB();
+db.connect();
 
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);

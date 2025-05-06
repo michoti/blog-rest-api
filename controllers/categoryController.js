@@ -1,5 +1,5 @@
 const Category = require('../models/Category');
-const errorHandler = require('./errorHandler').withScope('CategoryController');
+const errorHandler = require('../utils/errorHandling').withScope('CategoryController');
 
 /**
  * @swagger
